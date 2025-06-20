@@ -2,18 +2,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuButton = document.getElementById('menu-button');
     const menuClose = document.getElementById('menu-close');
     const nav = document.querySelector('nav');
-    const navItems = document.querySelectorAll('.nav-items a');
+    const navItems = document.querySelectorAll('.nav-itmes a');
+    const heroImg = document.querySelector('.hero-img img');
+
+    // Handle responsive images
+    function updateHeroImage() {
+        if (window.innerWidth < 1000) {
+            heroImg.src = './assets/images/image-web-3-mobile.jpg';
+        } else {
+            heroImg.src = './assets/images/image-web-3-desktop.jpg';
+        }
+    }
+
+    // Initial image load
+    updateHeroImage();
+
+    // Update image on resize
+    window.addEventListener('resize', updateHeroImage);
 
     // Open mobile menu
     menuButton.addEventListener('click', function() {
         nav.classList.add('open');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        document.body.style.overflow = 'hidden';
     });
 
     // Close mobile menu
     menuClose.addEventListener('click', function() {
         nav.classList.remove('open');
-        document.body.style.overflow = 'auto'; // Restore scrolling
+        document.body.style.overflow = 'auto';
     });
 
     // Close menu when clicking on nav items
